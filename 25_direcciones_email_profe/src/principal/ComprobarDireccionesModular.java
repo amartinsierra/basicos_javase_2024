@@ -21,7 +21,7 @@ public class ComprobarDireccionesModular {
 	static int contarDominio(String dominio,String[] dirs) {
 		int contador=0;
 		for(String dir:dirs) {
-			//si la diracción termina en el dominio recibido, incrementamos contador
+			//si la dirección termina en el dominio recibido, incrementamos contador
 			if(dir.endsWith(dominio)) {
 				contador++;
 			}
