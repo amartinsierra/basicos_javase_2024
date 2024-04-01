@@ -19,7 +19,7 @@ public class Primitiva {
 		}while(totales<6);
 		Arrays.sort(generados);//ordena array de menor a mayor
 		for(int n:generados) {
-			System.out.print(n+",");
+			System.out.print("["+n+"]");
 		}
 	}
 	static boolean repetido(int[] numeros, int num, int totales) {
