@@ -20,6 +20,7 @@ public class PruebaFecha {
 		String fecha="04/10/1999";
 		SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
 		Date f3=format.parse(fecha);
+		f3.setTime(292929939393L);
 		System.out.println(f3);
 	}
 
