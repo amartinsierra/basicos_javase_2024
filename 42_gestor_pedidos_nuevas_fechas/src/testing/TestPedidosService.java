@@ -24,6 +24,12 @@ class TestPedidosService {
 		service.nuevoPedido(new Pedido("whisky",1,f2));
 		service.nuevoPedido(new Pedido("patatas fritas",10,f3));
 	}
+	
+	@Test
+	void testPedidoProximoFecha() {
+		assertEquals("coca cola", service.pedidoProximoFecha(LocalDate.of(2023, 12, 7)).getProducto());
+		assertEquals("patatas fritas", service.pedidoProximoFecha(LocalDate.of(2022, 8, 7)).getProducto());
+	}
 
 	@Test
 	void testPedidoMasReciente() {
