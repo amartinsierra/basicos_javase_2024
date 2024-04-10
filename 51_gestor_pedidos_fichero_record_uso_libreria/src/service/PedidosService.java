@@ -32,11 +32,6 @@ public class PedidosService {
 			ex.printStackTrace();
 		}
 	}
-	public void nuevoPedido(String producto, int unidades, LocalDate fechaPedido) {
-		Pedido p=new Pedido(producto,unidades,fechaPedido);
-	
-		nuevoPedido(p);
-	}
 	
 	public Pedido pedidoMasReciente() {
 		Pedido pAux=null;
@@ -48,8 +43,8 @@ public class PedidosService {
 				Pedido p=Util.convertirCadenaAPedido(linea);
 				//si encontramos pedido con fecha más reciente que fMax
 				//actualizamos fMax y pAux
-				if(p.getFechaPedido().isAfter(fMax)) {
-					fMax=p.getFechaPedido();
+				if(p.fechaPedido().isAfter(fMax)) {
+					fMax=p.fechaPedido();
 					pAux=p;
 				}
 			}
@@ -68,7 +63,7 @@ public class PedidosService {
 			while((linea=bf.readLine())!=null) {
 				Pedido p=Util.convertirCadenaAPedido(linea);
 				//si fecha del pedido es posterior o igual a f1 y anterior o igual a f2, se incluye
-				if(p.getFechaPedido().compareTo(f1)>=0&&p.getFechaPedido().compareTo(f2)<=0) {
+				if(p.fechaPedido().compareTo(f1)>=0&&p.fechaPedido().compareTo(f2)<=0) {
 					aux.add(p);
 				}
 			}
@@ -81,14 +76,14 @@ public class PedidosService {
 	
 	public Pedido pedidoProximoFecha(LocalDate fecha) {
 		Pedido pAux=new Pedido();
-		pAux.setFechaPedido(LocalDate.of(1, 1, 1));
+		//pAux.setFechaPedido(LocalDate.of(1, 1, 1));
 		try(FileReader fr=new FileReader(fichero);
 				BufferedReader bf=new BufferedReader(fr);){
 			String linea;
 			while((linea=bf.readLine())!=null) {
 				Pedido p=Util.convertirCadenaAPedido(linea);
-				if(Math.abs(ChronoUnit.DAYS.between(p.getFechaPedido(), fecha))<
-						Math.abs(ChronoUnit.DAYS.between(pAux.getFechaPedido(), fecha))) {
+				if(Math.abs(ChronoUnit.DAYS.between(p.fechaPedido(), fecha))<
+						Math.abs(ChronoUnit.DAYS.between(pAux.fechaPedido(), fecha))) {
 					pAux=p;
 				}
 			}
